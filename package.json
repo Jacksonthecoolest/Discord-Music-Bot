@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon ."
   },
   "author": "Jackson Whyte",
   "license": "MIT",
@@ -17,6 +17,13 @@
     "discord-player": "^5.4.0",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
-    "node-pre-gyp": "^0.17.0"
+    "node-pre-gyp": "^0.17.0",
+    "soundcloud-scraper": "^5.0.3",
+    "spotify-url-info": "^3.2.3",
+    "youtube-sr": "^4.3.4",
+    "ytdl-core": "^4.11.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

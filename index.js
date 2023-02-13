@@ -1,8 +1,8 @@
 require("dotenv").config();
 
 const { REST } = require("@discordjs/rest");
-const { Routes } = require("discordjs/rest");
-const { Client, Intents, Collection, Client } = require("discord.js");
+const { Routes } = require("discord-api-types/v9");
+const { Client, Collection, IntentsBitField } = require("discord.js");
 const voice = require("@discordjs/voice");
 const { Player } = require("discord-player");
 
@@ -10,9 +10,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const client = new Client({
-    Intents: [Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILDS_MESSAGES,
-    Intents.FLAGS.GUILDS_VOICE_STATES]
+    intents: [IntentsBitField.Flags.Guilds,
+    IntentsBitField.Flags.GuildMessages,
+    IntentsBitField.Flags.GuildVoiceStates]
 })
 
 // Load all the commands
@@ -27,10 +27,10 @@ for (const file of commandFiles) {
     const command = require(filePath);
 
     client.commands.set(command.data.name, command);
-    command.push(command);
+    commands.push(command);
 }
 
-client.player = new player(client, {
+client.player = new Player(client, {
     ytdlOptions: {
         quality: "highestaudio",
         highWaterMark: 1 << 25
@@ -38,7 +38,7 @@ client.player = new player(client, {
 });
 
 client.on("ready", () => {
-    const guild_ids = client.guild.cache.map(guild => guild.id);
+    const guild_ids = client.guilds.cache.map(guild => guild.id);
 
     const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
     for (const guildId of guild_ids) {

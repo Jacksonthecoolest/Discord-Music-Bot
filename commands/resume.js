@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
             .setName("resume")
-            .setDescription("pause the current song.")
+            .setDescription("pause the current song."),
         execute: async ({client, interaction}) => {
 
             const queue = client.player.getQueue(interaction.guild);
