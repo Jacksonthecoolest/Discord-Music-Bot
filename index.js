@@ -3,7 +3,6 @@ require("dotenv").config();
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { Client, Collection, IntentsBitField } = require("discord.js");
-const voice = require("@discordjs/voice");
 const { Player } = require("discord-player");
 
 const fs = require("node:fs");
@@ -43,7 +42,7 @@ client.on("ready", () => {
     const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
     for (const guildId of guild_ids) {
         rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, guildId), {
-            body: commands
+            body: commands.map(c => c.toJSON()) // commands needs to be mapped as JSON. For more details: https://www.reddit.com/r/Discordjs/comments/xbz0vz/comment/io2fagv/?utm_source=share&utm_medium=web2x&context=3
         })
             .then(() => console.log(`Added commands to $guildId}`))
             .catch(console.error);
