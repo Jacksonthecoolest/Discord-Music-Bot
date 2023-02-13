@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon ."
+    "start": "nodemon .",
+    "test": "nodemon .",
+    "deploy-sc": "node deploy.js"
   },
   "author": "Jackson Whyte",
   "license": "MIT",
